@@ -9,8 +9,10 @@ description: >
   filtering, volume vs own average, IV term/IVR, dealer GEX +
   max pain, dark-pool baseline;
   `/trade analysis` (or any unknown first word) runs the default
-  flow. For earnings plays, 今天有没有大单 / 成交量 / 流入流出 /
-  母单吸筹·派发, or ticker mentions. Triggers on multi-leg options
+  flow. For any single-stock question (股价预期 / 目标价 / 策略, a
+  filing like S-1 / 10-K), earnings plays, 今天有没有大单 / 成交量 /
+  流入流出 / 母单吸筹·派发; a research PDF, article or paste with no
+  question is an `import`. Triggers on multi-leg options
   (Jade Lizard, bull put spread, iron condor, diagonal, calendar),
   IV / IV crush, LEAPS, dealer GEX / gamma / options flow / dark
   pool, VIX / vol hedging, NQ / ES 夜盘, position sizing / 仓位 /
@@ -99,6 +101,8 @@ A structure has to match three independent axes: **direction** (net delta vs the
 1. **No argument** → render the commands table above as the user-facing menu and ask what they'd like to do.
 2. **First word matches `setup`, `import`, `report`, `daily`, or `analysis`** → load the matching reference file and follow its instructions. Everything after the command name is the argument (file path, ticker(s), basket, situation, etc.).
 3. **First word doesn't match** → default to `analysis`. Load [references/commands/analysis.md](references/commands/analysis.md) and treat the full input as the analysis target. This is the common case for natural language ("analyze NVDA", "structure for TSLA earnings", "sell put on APP", a single ticker, etc.).
+
+Once a request is routed, read that command's reference file before answering, even when the question looks answerable from a case study, an attached document, or the context above, and even when no market-data source is connected. The command file holds the preflight the answer depends on: which knowledge-dir notes to load, the vega sanity check, and how to report a missing data source. An answer given without it skips those steps without saying so. Only the no-argument menu (rule 1) answers without reading a command file.
 
 > **Daily-read exception (route to `daily`, not `analysis`):** if the request is *"what is `<TICKER>` doing today"* in any form — 今天有没有大单 / 成交量怎么样 / IV 拉升了吗 / max pain 在哪 / 现在呢 / "refresh" / "what's the state of X today" — run [`daily`](references/commands/daily.md) on that one name. `daily` is the state read; `analysis` is the decision. A follow-up *"现在呢"* inside the same session is a **delta re-run** of `daily`, not a fresh full report — see that file's Arguments section. A question about **one specific print or spike** — 刚才那笔是什么 / 刚才的巨量是什么 / "what was that block" — is a lookup, not a state read: answer it first from the minute bars and the print itself, then offer the full `daily` run (same Arguments section).
 
