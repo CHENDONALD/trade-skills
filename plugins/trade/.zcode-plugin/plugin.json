@@ -1,8 +1,13 @@
 {
   "name": "trade",
-  "version": "2.0.0-fork.1",
-  "description": "Options trading knowledge — pitfalls, case studies, structure-to-regime matching.",
+  "version": "2.0.1",
+  "description": "Options trading knowledge \u2014 pitfalls, case studies, structure-to-regime matching.",
   "skills": [
     "./skills/trade"
-  ]
+  ],
+  "upstream": {
+    "repo": "zsh/trade",
+    "version": "2.0.0",
+    "mergedAt": "2026-11-25"
+  }
 }
