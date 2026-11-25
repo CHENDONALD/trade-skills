@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "trade-skills",
-  "version": "1.0.0",
+  "version": "2.17.1",
   "description": "Personal options trading Claude Code plugin marketplace.",
   "scripts": {
     "bump": "ccbump"
